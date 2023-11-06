@@ -37,7 +37,7 @@ const ListActions = (props: any) => {
   
   return (
     <TopToolbar className={className}>
-      {/* <CreateButton resource={resource}/> */}
+      <CreateButton resource={resource}/>
       <ExportButton
         disabled={total === 0}
         resource={resource}
@@ -94,6 +94,7 @@ const EmbeddingFilter = (props: any) => {
         ]}
         alwaysOn
       />
+      <NumberInput label="Chunk Id" source='chunkId' alwaysOn />
     </Filter>
   );
 };
@@ -108,8 +109,8 @@ export const EmbeddingsList = (props: any) => {
       <TextField source="content" />
       <TextField source="heading" />
       <TextField source="summary" />
-      <TextField source="tags" />
-      {/* <EditButton /> */}
+      <TextField source="type" />
+      <EditButton />
       <DeleteButton />
       <ShowButton />
     </Datagrid>
@@ -118,39 +119,41 @@ export const EmbeddingsList = (props: any) => {
 )};
 
 // EmbeddingCreate component
-// export const EmbeddingCreate = (props: any) => (
-//   <Create {...props}>
-//     <SimpleForm>
-//       <TextInput source="chunkId" />
-//       <TextInput source="content" multiline fullWidth />
-//       <TextInput source="heading" multiline fullWidth />
-//       <TextInput source="summary" multiline fullWidth />
-//       <TextInput source="tags" multiline fullWidth />
-//     </SimpleForm>
-//   </Create>
-// );
+export const EmbeddingCreate = (props: any) => (
+  <Create {...props}>
+    <SimpleForm>
+      <TextInput source="chunkId" />
+      <TextInput source="content" multiline fullWidth />
+      <TextInput source="heading" multiline fullWidth />
+      <TextInput source="summary" multiline fullWidth />
+      <TextInput source="type" />
+    </SimpleForm>
+  </Create>
+);
 
 // EmbeddingEdit component
-// export const EmbeddingEdit = (props: any) => (
-//   <Edit {...props}>
-//     <SimpleForm>
-//       <TextInput disabled source="id" />
-//       <TextInput source="content" multiline fullWidth />
-//       <TextInput source="tags" />
-//     </SimpleForm>
-//   </Edit>
-// );
+export const EmbeddingEdit = (props: any) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput disabled source="chunkId" />
+      <TextInput source="content" multiline fullWidth />
+      <TextInput source="heading" multiline fullWidth />
+      <TextInput source="summary" multiline fullWidth />
+      <TextInput source="type" />
+    </SimpleForm>
+  </Edit>
+);
 
 // EmbeddingShow component
 export const EmbeddingShow = (props: any) => {
   return (
     <Show {...props} sx={{maxWidth:"80vw",height:"100%"}}>
       <SimpleShowLayout>
-        <TextField source="id" />
+        <TextField source="chunkId" />
         <TextField source="content" sx = {{wordWrap:"break-word"}} />
         <TextField source="heading" sx = {{wordWrap:"break-word"}} />
         <TextField source="summary" sx = {{wordWrap:"break-word"}} />
-        <TextField source="tags" />
+        <TextField source="type" />
       </SimpleShowLayout>
     </Show>
   )

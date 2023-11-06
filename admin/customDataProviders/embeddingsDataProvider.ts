@@ -36,44 +36,46 @@ const dataProvider = {
     if (body.filter && body.filter.content) {
       data.data = data.data.filter((item: any) => item.content.includes(body.filter.content));
     }
-    // data.data = data.data.map((item:any)=>{
-    //   item.content = item.content.length > 20 ? `${item.content.substring(0, 20)}...` : item.content;
-    //   return item
-    // })
+    data.data = data.data.map((item:any)=>{
+      item.content = item.content.length > 100 ? `${item.content.substring(0, 100)}...` : item.content;
+      item.heading = item.heading.length > 100 ? `${item.heading.substring(0, 100)}...` : item.heading;
+      item.summary = item.summary.length > 100 ? `${item.summary.substring(0, 100)}...` : item.summary;
+      return item
+    })
     return data
   },
-  // update: async (resource: any, {id,data}: any): Promise<any> => {
-  //   const response = await client.post("/document", {id,...data},
-  //   {
-  //     headers: {
-  //       authorization: `Bearer ${
-  //         //@ts-ignore
-  //         JSON.parse(localStorage.getItem('userData')).user.token
-  //       }`,
-  //     },
-  //   });
-  //   if (response?.data) {
-  //     let data = response?.data;
-  //     return {data:data[0]}
-  //   } 
-  //   return {data}
-  // },
-  // create: async (resource: any, {data}: any): Promise<any> => {
-  //   const response = await client.post("/document", {...data, id: parseInt(data.id)},
-  //   {
-  //     headers: {
-  //       authorization: `Bearer ${
-  //         //@ts-ignore
-  //         JSON.parse(localStorage.getItem('userData')).user.token
-  //       }`,
-  //     },
-  //   });
-  //   if (response?.data) {
-  //     let data = response?.data;
-  //     return {data:data[0]}
-  //   } 
-  //   return {data}
-  // },
+  update: async (resource: any, {id,data}: any): Promise<any> => {
+    const response = await client.post("/document", {id,...data},
+    {
+      headers: {
+        authorization: `Bearer ${
+          //@ts-ignore
+          JSON.parse(localStorage.getItem('userData')).user.token
+        }`,
+      },
+    });
+    if (response?.data) {
+      let data = response?.data;
+      return {data:data[0]}
+    } 
+    return {data}
+  },
+  create: async (resource: any, {data}: any): Promise<any> => {
+    const response = await client.post("/document", {...data, id: parseInt(data.id)},
+    {
+      headers: {
+        authorization: `Bearer ${
+          //@ts-ignore
+          JSON.parse(localStorage.getItem('userData')).user.token
+        }`,
+      },
+    });
+    if (response?.data) {
+      let data = response?.data;
+      return {data:data[0]}
+    } 
+    return {data}
+  },
   delete: async (resource: any, params: any): Promise<any> => {
     const response = await client.delete(`/document/${params.id}`,
     {
