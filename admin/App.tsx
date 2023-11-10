@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import authProvider from './authProvider';
 import Login from './Login/Login';
 import EmbeddingDataProvider from './customDataProviders/embeddingsDataProvider';
-import FaqDataProvider from './customDataProviders/faqsDataProvider';
+import EmployeeDataProvider from './customDataProviders/employeesDataProvider';
 import FeedbackDataProvider from './customDataProviders/feedbackDataProvider';
 import UsersDataProvider from './customDataProviders/usersDataProvider';
 import ConversationsDataProvider from './customDataProviders/conversationsDataProvider';
@@ -36,6 +36,8 @@ const App = () => {
         switch (resource) {
           case 'embeddings':
             return EmbeddingDataProvider;
+          case 'employees':
+            return EmployeeDataProvider;
           default:
             throw new Error(`Unknown resource: ${resource}`);
         }

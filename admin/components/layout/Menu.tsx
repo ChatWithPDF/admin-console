@@ -3,11 +3,13 @@ import { Menu } from 'react-admin';
 import { MenuItemsWithPermissionResolver } from "./MenuOptions";
 import { usePermissions } from "ra-core";
 import DescriptionIcon from '@mui/icons-material/Description';
+import { SupervisedUserCircleOutlined } from "@mui/icons-material";
 
 
 const getIcon = (resource: String) => {
     switch (resource) {
         case 'embeddings': return <DescriptionIcon />
+        case 'employees': return <SupervisedUserCircleOutlined />
         default: return <></>;
     }
 }

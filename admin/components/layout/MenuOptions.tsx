@@ -1,4 +1,5 @@
 import embedding from "../../resources/embedding";
+import employee from "../../resources/employee";
 
 const MenuOptions: any[] = [
   {
@@ -6,6 +7,13 @@ const MenuOptions: any[] = [
     icon: "chat",
     resource: "embeddings",
     props: embedding,
+    permissions: ["Admin"]
+  },
+  {
+    name: "Employees",
+    icon: "user",
+    resource: "employees",
+    props: employee,
     permissions: ["Admin"]
   }
 ];
